@@ -2,9 +2,9 @@ import React from "react";
 
 const Result =({score, playAgain})=>(
     <div className="core-board">
-        <div className="score">You scored {score}/5 correct answers!</div>
+        <div className="score">Zdobyłeś {score}/5 poprawnych odpowiedzi!</div>
         <button className="playBtn" onClick={playAgain}>
-            Play again 
+           Graj ponownie
         </button>
     </div>
 );
