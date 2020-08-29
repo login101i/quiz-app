@@ -108,7 +108,7 @@ import quizService from './BazaPytan/index'
 
 import QuestionBox from './Components/pytanieBox'
 import Result from './Components/Result'
-
+import ScrollView from 'scroll-view'
 
 
 import './assets/style.css'
@@ -158,13 +158,13 @@ class QuizBee extends Component {
             responses: 0
         })
     }
-    // doGory() {
-    //     document.body.scrollTop=1
-    // }
+//    doGory(){
+//        document.body.scroll.scrollTo({ x: 0, y: 0, animated: true });
+//    }
 
     render() {
         return (
-
+           
             <div className="container">
                 <div className="title">AKAN QUIZ</div>
                 {this.state.questionBank.length > 0 && this.state.responses < 5 &&
@@ -182,17 +182,18 @@ class QuizBee extends Component {
                     )}
 
 
-                            if(this.state.responses === 5){
-                
-                    <Result
-                        score={this.state.score}
-                        grajPonownie={this.grajPonownie}
-                    />
-                }
 
+                {this.state.responses === 5 ? (
+                  
+                        <Result  
+                            score={this.state.score}
+                            grajPonownie={this.grajPonownie}
+                        />
+
+                ) : null}
 
             </div>
-
+      
         )
     }
 }
