@@ -18,9 +18,9 @@ import React from 'react'
 const Result = ({ score, grajPonownie }) => {
     return (
         <div className="score-card">
-            <div className="score">
+            {/* <div className="score">
                 {score > 4 ? (<div>Super! Twój wynik to {score}/5</div>) : <div>Slabo. Twój wynik to {score}/5</div>}
-            </div>
+            </div> */}
             <button
                 className="playBtn"
                 onClick={grajPonownie}

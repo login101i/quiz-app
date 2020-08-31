@@ -108,7 +108,9 @@ import quizService from './BazaPytan/index'
 
 import QuestionBox from './Components/pytanieBox'
 import Result from './Components/Result'
-import ScrollView from 'scroll-view'
+
+import FlipMove from 'react-flip-move'
+
 
 
 import './assets/style.css'
@@ -136,17 +138,31 @@ class QuizBee extends Component {
 
 
 
-    rozkminijOdpowiedz = (answers, item, correct) => {
-        console.log(answers, item, correct)
-        if (item === answers[correct]) {
+    rozkminijOdpowiedz = (answerIndex, item, answers, correct) => {
+        this.setState({
+            responses: this.state.responses + 1,
+            score: this.state.score + 1
+        })
+        console.log(this.state.score, this.state.responses)
+    }
+
+    odejmijPunkt = (answerIndex, item, answers, correct) => {
+        const answerIndexOK = answers.indexOf(item)
+        console.log(answerIndexOK)
+
+        if (answerIndexOK !== Number(correct)) {
             this.setState({
-                score: this.state.score + 1
+                score: this.state.score - 1
+
             })
-            console.log("poprawna odpowiedz")
+            console.log('poprawna')
+        } else {
+            console.log('niepoprawna')
         }
         this.setState({
-            responses: this.state.responses + 1
+            responses: this.state.responses + 0
         })
+        console.log(this.state.score, this.state.responses)
 
     }
 
@@ -158,13 +174,15 @@ class QuizBee extends Component {
             responses: 0
         })
     }
-//    doGory(){
-//        document.body.scroll.scrollTo({ x: 0, y: 0, animated: true });
-//    }
+
+
+    //    doGory(){
+    //        document.body.scroll.scrollTo({ x: 0, y: 0, animated: true });
+    //    }
 
     render() {
         return (
-           
+
             <div className="container">
                 <div className="title">AKAN QUIZ</div>
                 {this.state.questionBank.length > 0 && this.state.responses < 5 &&
@@ -174,7 +192,9 @@ class QuizBee extends Component {
                                 key={questionId}
                                 question={question}
                                 options={answers}
-                                wybranaOdpowiedz={(answers, item) => this.rozkminijOdpowiedz(answers, item, correct)}
+                                correct={correct}
+                                wybranaOdpowiedz={(answerIndex, item) => this.rozkminijOdpowiedz(answerIndex, item, answers, correct)}
+                                wybranoZle={(answerIndex, item) => this.odejmijPunkt(answerIndex, item, answers, correct)}
                             />
                         )
 
@@ -182,18 +202,22 @@ class QuizBee extends Component {
                     )}
 
 
+                <div className="xxx">
+                    {this.state.responses === 5 ?
+                       
+                            (
+                        <Result
+                                score={this.state.score}
+                                grajPonownie={this.grajPonownie}
+                            />
 
-                {this.state.responses === 5 ? (
-                  
-                        <Result  
-                            score={this.state.score}
-                            grajPonownie={this.grajPonownie}
-                        />
+                    )   : null}
 
-                ) : null}
+                </div>
+
 
             </div>
-      
+
         )
     }
 }
