@@ -139,30 +139,30 @@ class QuizBee extends Component {
 
 
     rozkminijOdpowiedz = (answerIndex, item, answers, correct) => {
-        this.setState({
-            responses: this.state.responses + 1,
-            score: this.state.score + 1
-        })
+        // this.setState({
+        //     responses: this.state.responses < 5 ? this.state.responses + 1 : 5
+        // })
         console.log(this.state.score, this.state.responses)
     }
 
     odejmijPunkt = (answerIndex, item, answers, correct) => {
         const answerIndexOK = answers.indexOf(item)
-        console.log(answerIndexOK)
+        // this.setState({
+        //     responses: this.state.responses + 1,
+        //     score: this.state.score + 1
+        // })
 
-        if (answerIndexOK !== Number(correct)) {
-            this.setState({
-                score: this.state.score - 1
+        // if (answerIndexOK !== Number(correct)) {
+        //     this.setState({
+        //         score: this.state.score + 1
 
-            })
-            console.log('poprawna')
-        } else {
-            console.log('niepoprawna')
-        }
-        this.setState({
-            responses: this.state.responses + 0
-        })
-        console.log(this.state.score, this.state.responses)
+        //     })
+        //     console.log('poprawna')
+        // } else {
+        //     console.log('niepoprawna')
+        // }
+        
+        // console.log(this.state.score, this.state.responses)
 
     }
 
@@ -202,7 +202,7 @@ class QuizBee extends Component {
                     )}
 
 
-                <div className="xxx">
+                
                     {this.state.responses === 8 ?
                        
                             (
@@ -216,7 +216,7 @@ class QuizBee extends Component {
                 </div>
 
 
-            </div>
+          
 
         )
     }
