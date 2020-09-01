@@ -203,7 +203,7 @@ class QuizBee extends Component {
 
 
                 <div className="xxx">
-                    {this.state.responses === 5 ?
+                    {this.state.responses === 8 ?
                        
                             (
                         <Result

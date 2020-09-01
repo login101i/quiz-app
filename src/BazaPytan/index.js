@@ -109,12 +109,12 @@ const qBank = [
     correct: 0,
     questionId: Math.random()
   },
-  {
-    question: `Co pokazane jest na zdjęciu?`,
-    answers: ["Klamki i szyldy na patent", 'Biały obrus z lnu', "Szyldy dla drzwi do wykorzystania z  patentem ", "Klamka i szyldy na zamek na klucz"],
-    correct: 3,
-    questionId: Math.random()
-  },
+  // {
+  //   question: `Co pokazane jest na zdjęciu?`,
+  //   answers: ["Klamki i szyldy na patent", 'Biały obrus z lnu', "Szyldy dla drzwi do wykorzystania z  patentem ", "Klamka i szyldy na zamek na klucz"],
+  //   correct: 3,
+  //   questionId: Math.random()
+  // },
   {
     question: `Czy można zastosować podwieszany zlewozmywak w drenianym blacie`,
     answers: ["tak", 'nie', "tylko jak się go przyklei ", "tak, ale musi być specjalnie wyprofilowany"],
