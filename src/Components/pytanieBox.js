@@ -48,7 +48,7 @@ import React, { useState } from 'react'
 import FlipMove from 'react-flip-move'
 
 
-const QuestionBox = ({ question, options, correct, wybranaOdpowiedz, wybranoZle }) => {
+const QuestionBox = ({ question, options, correct, wybranoDobrze, wybranoZle, wszystkieNieaktywne}) => {
 
     const [answer, setAnswer] = useState(options)
 
@@ -91,18 +91,11 @@ const QuestionBox = ({ question, options, correct, wybranaOdpowiedz, wybranoZle 
                             const answerIndex = options.indexOf(item)
                             console.log(answerIndex, item, answer)
 
-
-
-                            // const clickedButton = document.addEventListener("click", function(event){
-                            //     const target = event.target.parentElement;
-                            //     console.log(target)
-                            //     return target
-                            // })
-                            // console.log(clickedButton)
-
+                            let wszystkieBtn = document.querySelectorAll('.answerBtn')
+                            console.log(wszystkieBtn)
                             let kliknietyBtn = Array.from(document.querySelectorAll('.answerBtn')).find(el => el.innerText === item.trim());
+
                             const ancestor = kliknietyBtn.parentElement
-                           
                             let pominieteBtn = Array.from(ancestor.querySelectorAll('.answerBtn')).filter(el => el.innerText !== item.trim());
 
 
@@ -110,10 +103,12 @@ const QuestionBox = ({ question, options, correct, wybranaOdpowiedz, wybranoZle 
                                 kliknietyBtn.style.background = "green"
                                 kliknietyBtn.disabled = true
                                 pominieteBtn.forEach(o => o.style.background = "red")
-                                pominieteBtn.forEach(r=>r.disabled=true)
+                                pominieteBtn.forEach(r => r.disabled = true)
+                                wybranoDobrze(answerIndex, item)
 
-                                wybranaOdpowiedz(answerIndex, item)
-
+                                // if(kliknietyBtn.disabled===true){
+                                //     alert("nieaktywny")
+                                // }
 
 
                             }
@@ -121,20 +116,28 @@ const QuestionBox = ({ question, options, correct, wybranaOdpowiedz, wybranoZle 
                                 kliknietyBtn.style.background = "red"
                                 kliknietyBtn.disabled = true
                                 wybranoZle(answerIndex, item)
-
-
-                                // const ancestor = pominieteBtn.forEach(o => o.style.background = "red")
-                                // console.log(ancestor)
-                             
-                                // let oo = Array.from(ancestor.querySelectorAll('.answerBtn')).filter(el => el.innerText !== answer);
-                                // console.log(oo)
-                                // oo.forEach(o => o.style.background = "red")
-                                // pominieteBtn.forEach(o => o.style.background = "red")
-                                //     .style.background = "green"
                             }
+                            const iloscButtonow = wszystkieBtn.length
+                            console.log(iloscButtonow)
+                         
+                            console.log(iloscButtonow)
+                            for (let i = 0; i < iloscButtonow; i++) {
+                                let nieaktywny = wszystkieBtn[i].disabled === true
+                                console.log(nieaktywny)
+                            }
+                            console.log(wszystkieBtn)
+                            const tablicaWszystkichButtonow=Array.from(wszystkieBtn)
+                            console.log(tablicaWszystkichButtonow)
+                            const liczbaNiekatywnychBtn=tablicaWszystkichButtonow.filter(obj=>obj.disabled).length
+                            console.log(liczbaNiekatywnychBtn)
 
+                            if(liczbaNiekatywnychBtn===iloscButtonow){
+                                wszystkieNieaktywne()
+                                console.log("będę konczył grę")
 
+                            }
                         }}
+                     
 
 
                     >{item}

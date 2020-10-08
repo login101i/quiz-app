@@ -15,12 +15,12 @@ import React from 'react'
 
 
 
-const Result = ({ score, grajPonownie }) => {
+const Result = ({ score, responses, grajPonownie }) => {
     return (
         <div className="score-card">
-            {/* <div className="score">
-                {score > 4 ? (<div>Super! Twój wynik to {score}/5</div>) : <div>Slabo. Twój wynik to {score}/5</div>}
-            </div> */}
+            <div className="score">
+    {score > 8 ? (<div>Super! Twój wynik to {score}/{responses}</div>) : <div>Slabo. Twój wynik to {score}:{responses}</div>}
+            </div>
             <button
                 className="playBtn"
                 onClick={grajPonownie}

@@ -120,8 +120,8 @@ import './assets/style.css'
 class QuizBee extends Component {
     state = {
         questionBank: [],
-        score: 0,
-        responses: 0
+        score: 1,
+        responses: 1
     }
 
     getQuestions = () => {
@@ -138,88 +138,93 @@ class QuizBee extends Component {
 
 
 
-    rozkminijOdpowiedz = (answerIndex, item, answers, correct) => {
-        // this.setState({
-        //     responses: this.state.responses < 5 ? this.state.responses + 1 : 5
-        // })
+    wybranoDobrze = (answerIndex, item, answers, correct) => {
+
+        if (answerIndex === correct) {
+            console.log("ok poprawna odp")
+            this.setState({
+                score: this.state.score + 1,
+                responses: this.state.responses < 20 ? this.state.responses + 1 : 20
+            })
+        }
         console.log(this.state.score, this.state.responses)
     }
 
-    odejmijPunkt = (answerIndex, item, answers, correct) => {
-        const answerIndexOK = answers.indexOf(item)
-        // this.setState({
-        //     responses: this.state.responses + 1,
-        //     score: this.state.score + 1
-        // })
+    wybranoZle = (answerIndex, item, answers, correct) => {
+        this.setState({
+            score: this.state.score + 0,
+            responses: this.state.responses < 20 ? this.state.responses + 1 : 20
+        })
 
-        // if (answerIndexOK !== Number(correct)) {
-        //     this.setState({
-        //         score: this.state.score + 1
-
-        //     })
-        //     console.log('poprawna')
-        // } else {
-        //     console.log('niepoprawna')
-        // }
-        
-        // console.log(this.state.score, this.state.responses)
+        console.log(typeof (answerIndex), typeof (correct))
+        console.log(answerIndex, correct)
+        console.log("odpowiedź zła, nie dodaję punktu")
+        console.log(this.state.score, this.state.responses)
 
     }
 
-
-    grajPonownie = () => {
-        this.getQuestions()
+    zakonczGre=()=>{
         this.setState({
-            score: 0,
-            responses: 0
+            responses:this.state.responses+1000
         })
     }
 
 
-    //    doGory(){
-    //        document.body.scroll.scrollTo({ x: 0, y: 0, animated: true });
-    //    }
 
-    render() {
-        return (
-
-            <div className="container">
-                <div className="title">AKAN QUIZ</div>
-                {this.state.questionBank.length > 0 && this.state.responses < 5 &&
-                    this.state.questionBank.map(
-                        ({ question, answers, correct, questionId, wybranaOdpowiedz }) => (
-                            <QuestionBox
-                                key={questionId}
-                                question={question}
-                                options={answers}
-                                correct={correct}
-                                wybranaOdpowiedz={(answerIndex, item) => this.rozkminijOdpowiedz(answerIndex, item, answers, correct)}
-                                wybranoZle={(answerIndex, item) => this.odejmijPunkt(answerIndex, item, answers, correct)}
-                            />
-                        )
+grajPonownie = () => {
+    this.getQuestions()
+    this.setState({
+        score: 0,
+        responses: 0
+    })
+}
 
 
-                    )}
+//    doGory(){
+//        document.body.scroll.scrollTo({ x: 0, y: 0, animated: true });
+//    }
+
+render() {
+    return (
+
+        <div className="container">
+            <div className="title">AKAN QUIZ</div>
+            {this.state.questionBank.length > 0 && this.state.responses < 20 &&
+                this.state.questionBank.map(
+                    ({ question, answers, correct, questionId }) => (
+                        <QuestionBox
+                            key={questionId}
+                            question={question}
+                            options={answers}
+                            correct={correct}
+                            wybranoDobrze={(answerIndex, item) => this.wybranoDobrze(answerIndex, item, answers, correct)}
+                            wybranoZle={(answerIndex, item) => this.wybranoZle(answerIndex, item, answers, correct)}
+                            wszystkieNieaktywne={()=>this.zakonczGre()}
+                        />
+                    )
+                )}
 
 
-                
-                    {this.state.responses === 8 ?
-                       
-                            (
-                        <Result
-                                score={this.state.score}
-                                grajPonownie={this.grajPonownie}
-                            />
 
-                    )   : null}
+            {this.state.responses > 20 ?
 
-                </div>
+                (
+                    <Result
+                        score={this.state.score}
+                        responces={this.state.responces}
+                        grajPonownie={this.grajPonownie}
+
+                    />
+
+                ) : null}
+
+        </div>
 
 
-          
 
-        )
-    }
+
+    )
+}
 }
 
 ReactDOM.render(<QuizBee />, document.getElementById("root"))

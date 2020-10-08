@@ -145,6 +145,24 @@ const qBank = [
     correct: 2,
     questionId: Math.random()
   },
+  {
+    question: `Czemu zawias OTLAV invisacta 300 nie może być stosowany do drzwi przylgowych`,
+    answers: ["nie wiem", "nikt tego nie wie", "trzeba zapytać P. Wojtka", "bo tak piszą"],
+    correct: 2,
+    questionId: Math.random()
+  },
+  question: `Co to jest rura NRS`,
+  answers: ["Kanalizacyjna", "Element wyciszający do okapów", "Rura spiro ale miedziana", "Przedłużka dla rury od zmywarki"],
+  correct: 1,
+  questionId: Math.random()
+  },
+{
+  question: `Okap Falmec- Jaką minimalna wydajność musi mieć czasza okapu aby można było użyć silnika poddaszowego?`,
+    answers: ["600m3/h", "700m3/h", "800m3/h", "800cm3/h"],
+      correct: 2,
+        questionId: Math.random()
+}
+  
 ]
 
 export default (n = 8) => Promise.resolve(qBank.sort(() => 0.5 - Math.random()).slice(0, n))
