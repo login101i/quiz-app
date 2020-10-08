@@ -151,18 +151,31 @@ const qBank = [
     correct: 2,
     questionId: Math.random()
   },
-  question: `Co to jest rura NRS`,
-  answers: ["Kanalizacyjna", "Element wyciszający do okapów", "Rura spiro ale miedziana", "Przedłużka dla rury od zmywarki"],
-  correct: 1,
-  questionId: Math.random()
+  {
+    question: `Co to jest rura NRS`,
+    answers: ["Kanalizacyjna", "Element wyciszający do okapów", "Rura spiro ale miedziana", "Przedłużka dla rury od zmywarki"],
+    correct: 1,
+    questionId: Math.random()
   },
-{
-  question: `Okap Falmec- Jaką minimalna wydajność musi mieć czasza okapu aby można było użyć silnika poddaszowego?`,
+  {
+    question: `Okap Falmec- Jaką minimalna wydajność musi mieć czasza okapu aby można było użyć silnika poddaszowego?`,
     answers: ["600m3/h", "700m3/h", "800m3/h", "800cm3/h"],
-      correct: 2,
-        questionId: Math.random()
-}
-  
+    correct: 2,
+    questionId: Math.random()
+  },
+  {
+    question: `Grubość forniru mieści się w przedziale:`,
+    answers: ["6-15mm", "6-12mm", "2-20mm"],
+    correct: 0,
+    questionId: Math.random()
+  },
+  {
+    question: `Grubość obłogu zaczyna się od przedziału:`,
+    answers: ["15mm", "25mm", "40mm"],
+    correct: 1,
+    questionId: Math.random()
+  }
+
 ]
 
 export default (n = 8) => Promise.resolve(qBank.sort(() => 0.5 - Math.random()).slice(0, n))
